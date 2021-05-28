@@ -9,6 +9,7 @@
 #include <iostream>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
@@ -30,9 +31,24 @@ bool set_et_match(std::vector<int> numbers, int n)
     return (false);
 }
 
+bool set_et_set(std::vector<int> numbers, int n)
+{
+	std::unordered_set<int> numset(n);
+	int target;
+
+	for (auto it = numbers.begin() ; it != numbers.end() ; it++) {
+		target = n - *it;
+		if (numset.find(target) != numset.end())
+			return (true);
+		numset.insert(*it);
+	}
+	return (false);
+}
+
 int main()
 {
-    std::vector<int> test{1, 2, 3, 4, 5};
+    std::vector<int> test{};
     cout<<set_et_match(test, 8)<<endl;
+    cout<<set_et_set(test, 8)<<endl;
     return (1);
 }

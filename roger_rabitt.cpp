@@ -9,8 +9,11 @@
 #include <iostream>
 #include <bitset>
 #include <queue>
+#include <chrono>
+#include <typeinfo>
 
 using namespace std;
+using namespace chrono;
 
 std::string roger_rabbit(unsigned int n)
 {
@@ -74,6 +77,30 @@ std::vector<string> roger(unsigned int n)
     return (res);
 }
 
+std::vector<string> roger(unsigned int n, int c)
+{
+    std::vector<string> res(n);
+    size_t copy_pos = 0;
+    size_t pos = 1;
+    unsigned int loop_length = (n / 2) - 1;
+
+    if (!n)
+	return (res);
+    res[0] = "1";
+    //if (n < 2)
+    //    return (res);
+    while (copy_pos < loop_length) {
+        res[pos] = (res[copy_pos] + "0");
+        res[pos + 1] = (res[copy_pos] + "1");
+	pos += 2;
+        copy_pos++;
+    }
+    res[pos] = (res[copy_pos] + "0");
+    if ((n % 2))
+        res[pos + 1] = (res[copy_pos] + "1");
+    return (res);
+}
+
 int main()
 {
     std::string s = roger_rabbit(3);
@@ -90,10 +117,19 @@ int main()
     //cout<<vec<<endl;
     //vec = vec + "kekz";
     //cout<<vec<<endl;
-    auto caca = roger(0);
+    auto beg = high_resolution_clock::now();
+    auto caca = roger(1, 'a');
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(end - beg);
+    beg = high_resolution_clock::now();
+    auto second = roger(8);
+    end = high_resolution_clock::now();
+    auto duration2 = duration_cast<microseconds>(end - beg);
     for (auto it = caca.begin() ; it != caca.end() ; it++)
         cout<<*it<<" , ";
     cout<<endl;
+    cout<<"duration: "<<duration.count()<<" microseconds"<<endl;
+    cout<<"duration 2: "<<duration2.count()<<" microseconds"<<endl;
     /*
     cout<<&str[4]<<endl;
     for (auto it = vec.begin() ; it != vec.end() ; it++)
