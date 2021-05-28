@@ -33,22 +33,25 @@ bool set_et_match(std::vector<int> numbers, int n)
 
 bool set_et_set(std::vector<int> numbers, int n)
 {
-	std::unordered_set<int> numset(n);
+	std::unordered_set<int> numset;
+    numset.reserve(numbers.size());
 	int target;
 
+    cout<<"buckets : "<<numset.bucket_count()<<endl;
 	for (auto it = numbers.begin() ; it != numbers.end() ; it++) {
 		target = n - *it;
 		if (numset.find(target) != numset.end())
 			return (true);
 		numset.insert(*it);
 	}
+    cout<<"buckets : "<<numset.bucket_count()<<endl;
 	return (false);
 }
 
 int main()
 {
-    std::vector<int> test{};
+    std::vector<int> test{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
     cout<<set_et_match(test, 8)<<endl;
-    cout<<set_et_set(test, 8)<<endl;
+    cout<<set_et_set(test, 50)<<endl;
     return (1);
 }
