@@ -70,7 +70,6 @@ int main()
     new_inv->show();
     new_inv->add(obj);
     new_inv->show();
-    new_inv->add(obj);
     new_inv->add(apple);
     new_inv->add(sword);
     new_inv->add(new BaseObject(new_inv, "Axe", 1, 1, 1));
@@ -91,8 +90,8 @@ int main()
     std::sort(obj_list->begin(), obj_list->end(), my_comp);
     new_inv->showDetails();
     auto len = obj_list->size();
-    //for (size_t i = 0 ; i<len ; i++)
-    //    delete (*obj_list)[i];
+    for (size_t i = 0 ; i<len ; i++)
+        delete (*obj_list)[i];
     delete (new_inv->getList());
     
     delete (new_inv);
