@@ -35,6 +35,18 @@ bool obj_strcmp(std::string a, std::string b)
     return (a[i] < b[i]);
 }
 
+int my_strcmp(std::string const& a, std::string const& b)
+{
+    size_t i(0);
+
+    while (a[i] && b[i]){
+        if (a[i] != b[i])
+            return (a[i] - b[i]);
+        i++;
+    }
+    return (a[i] - b[i]);
+}
+
 bool object_comp(const std::vector<BaseObject *>::iterator a, const std::vector<BaseObject *>::iterator b)
 {
     if ((*a)->priority() == (*b)->priority()) {
@@ -61,6 +73,8 @@ struct mycomp{
     }
 } my_comp;
 
+
+
 int main()
 {
     Inventory *new_inv = new Inventory();
@@ -72,6 +86,7 @@ int main()
     new_inv->show();
     new_inv->add(apple);
     new_inv->add(sword);
+    new_inv->add(new BaseObject(new_inv, "Axe", 1, 1, 1));
     new_inv->add(new BaseObject(new_inv, "Axe", 1, 1, 1));
     new_inv->showDetails();
     auto obj_list = new_inv->getList();
@@ -90,10 +105,22 @@ int main()
     std::sort(obj_list->begin(), obj_list->end(), my_comp);
     new_inv->showDetails();
     auto len = obj_list->size();
+    std::string input("default");
+    while (1){
+        std::cout<<std::endl<<"please enter name of item wanted: ";
+        std::getline(std::cin, input);
+        std::cout<<std::endl;
+        if (my_strcmp(input, "quit") == 0)
+            break;
+        if (my_strcmp(input, "show") == 0)
+            new_inv->showDetails();
+        else
+            new_inv->addTo(input);
+    }
+    std::cout<<"Goodbye"<<std::endl;
     for (size_t i = 0 ; i<len ; i++)
         delete (*obj_list)[i];
     delete (new_inv->getList());
-    
     delete (new_inv);
     return (0);
 }

@@ -79,6 +79,7 @@ class Inventory
             std::cout<<"Name ; Quantity ; Max Quantity ; Priority"<<std::endl;
             for (auto it = _list->begin() ; it != _list->end() ; it++)
                 std::cout<<(*it)->name()<<" ; "<<(*it)->quantity()<<" ; "<<(*it)->max()<<" ; "<<(*it)->priority()<<std::endl;
+            std::cout<<std::endl<<"Left space: "<<_space<<" out of: "<<_totalSpace<<std::endl;
         }
 
         void add(BaseObject *obj)
@@ -89,17 +90,21 @@ class Inventory
             }
         }
 
+        struct comp;
+
+        void sort();
+
         std::vector<BaseObject *> *getList(){return _list;}
 
-        int name_cmp(std::string a, std::string b);
+        int name_cmp(std::string const& a, std::string const& b);
 
-        bool name_sort(std::string a, std::string b);
+        static bool name_sort(std::string const& a, std::string const& b);
 
-        BaseObject *find(std::string name);
+        BaseObject *find(std::string const& name);
 
-        void addTo(std::string name);
+        bool addTo(std::string name);
 
-        void addTo(std::string name, int quantity);
+        bool addTo(std::string name, int quantity);
 
     private:
         std::vector<BaseObject *> *_list;
