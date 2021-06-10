@@ -4,9 +4,13 @@
 
 int main()
 {
-    std::ifstream myfile("dummy.txt");
+    std::ifstream myfile("test.JSON", std::ifstream::binary);
+    std::ofstream newfile("copyfox.JSON", std::ios::binary);
+    std::string ting;
     if (!myfile)
         return (1);
+    //newfile<<myfile.rdbuf();
+    newfile<<"{\n\t\"Category\":{\n\t\t\"Item\":[1, 2, 3, 4]\n\t}\n}\n";
     /*
     myfile.seekp(0, std::ios::end);
     long init = myfile.tellp();
@@ -29,18 +33,6 @@ int main()
         myfile<<"smol";
     }
     */
-    myfile.ignore();
-    myfile.close();
-    int const height = 10;
-    int yes[5];
-    bool no = true;
-    yes[2] = no;
-    std::cout<<yes[2]<<std::endl;
-    std::cout<<height<<std::endl;
-    std::string age;
-    //std::cin.ignore();
-    std::cin.ignore(256, ';');
-    std::cin>>age;
-    std::cout<<age;
+
     return 0;
 }

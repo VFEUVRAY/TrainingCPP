@@ -12,7 +12,7 @@ int Inventory::name_cmp(std::string const& a, std::string const& b)
     size_t i = 0;
 
     while (a[i] && b[i]){
-        if (a[i] != b[i])
+        if ((a[i] + (32 * (a[i] >= 'A' && a[i] <= 'Z'))) != (b[i] + (32 * (b[i] >= 'A' && b[i] <= 'Z'))))
             return (a[i] - b[i]);
         i++;
     }
@@ -40,7 +40,7 @@ bool Inventory::addTo(std::string name)
         std::cout<<name<<" added to your inventory"<<std::endl<<std::endl;
     else
         std::cout<<"You can only hold "<<obj->max()<<" "<<name<<"(s) in your inventory"<<std::endl<<std::endl;
-    return (1)
+    return (1);
 }
 
 bool Inventory::addTo(std::string name, int quantity)

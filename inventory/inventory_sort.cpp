@@ -118,6 +118,8 @@ int main()
             new_inv->addTo(input);
     }
     std::cout<<"Goodbye"<<std::endl;
+    save(new_inv);
+    load(new_inv);
     for (size_t i = 0 ; i<len ; i++)
         delete (*obj_list)[i];
     delete (new_inv->getList());

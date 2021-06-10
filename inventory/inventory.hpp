@@ -2,11 +2,16 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 class BaseObject;
 class Inventory;
+class Invetory_ctype;
 
 //bool object_comp(BaseObject a, BaseObject b);
+void save(Inventory *inv);
+void save(Inventory *inv, std::string name);
+bool load(Inventory *inv);
 
 class BaseObject
 {
