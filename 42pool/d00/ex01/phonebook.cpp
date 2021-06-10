@@ -10,7 +10,9 @@
 void phonebook()
 {
     std::string input = "dummy";
-    std::vector<Contact *> contact_list(0);
+    int const list_size = 8;
+    int current_size = 0;
+    Contact *list[list_size];
 
     while (1){
         std::cout<<"Input something bruh :";
@@ -20,9 +22,9 @@ void phonebook()
         if (!my_strcmp(input, "QUIT"))
             return;
         else if (!my_strcmp(input, "ADD"))
-            add_contact(contact_list);
+            add_contact(list, current_size);
         else if (!my_strcmp(input, "SEARCH"))
-            search_contact(contact_list);
+            search_contact(list, current_size);
         else
             std::cout<<"Command: "<<input<<" not found."<<std::endl;
     }

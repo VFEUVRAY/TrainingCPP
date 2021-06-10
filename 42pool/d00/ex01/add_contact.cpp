@@ -38,15 +38,36 @@ Contact *new_contact()
     return (con);
 }
 
-void add_contact(std::vector<Contact *>& list)
+int max_reached()
 {
-    std::cout<<"You currently have "<<list.size()<<" contacts in your list :"<<std::endl;
-    if (list.size() > 0){
-        for (auto it = list.begin() ; it != list.end() ; it++){
-            std::cout<<(*it)->getFirstName()<<std::endl;
+    int choice_ID = -1;
+    while (choice_ID < 0 || choice_ID > 8) {
+        std::cout<<"You have reached maximum capacity, please enter ID of contact you wish to repalce (entrer 0 to cancel):"<<std::endl;
+        std::cin>>choice_ID;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    return (choice_ID);
+}
+
+void add_contact(Contact **list, int& current_size)
+{
+    std::cout<<"You currently have "<<current_size<<" contacts in your list :"<<std::endl;
+    if (current_size > 0){
+        for (int i = 0 ; i != current_size ; i++){
+            std::cout<<i+1<<'|'<<list[i]->getFirstName()<<std::endl;
         }
     }
-    list.push_back(new_contact());
+    if (current_size < 8){
+        list[current_size] = new_contact();
+        current_size++;
+    } else {
+        int choice_ID = max_reached();
+        if (!choice_ID)
+            return;
+        choice_ID--;
+        delete (list[choice_ID]);
+        list[choice_ID] = new_contact();
+    }
 }
 
 int test(std::vector<int>& truc)

@@ -46,6 +46,6 @@ class Contact
 };
 
 int my_strcmp(std::string const& a, std::string const& b);
-void add_contact(std::vector<Contact *>& list);
-void search_contact(std::vector<Contact *>& list);
+void add_contact(Contact **list, int& current_size);
+void search_contact(Contact **list, int& current_size);
 void phonebook();
