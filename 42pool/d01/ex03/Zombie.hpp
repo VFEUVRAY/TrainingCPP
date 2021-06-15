@@ -7,18 +7,23 @@
 
 #include <iostream>
 
+int my_strlen(const char *str);
+char *my_strcpy(const char *str);
+
 class Zombie
 {
     public:
         Zombie(const char *name, const char *type);
-        ~Zombie(){};
+        Zombie();
+        ~Zombie();
 
         const char *getName(){return _name;}
         const char *getType(){return _type;}
+        void setName(const char *name);
+        void setType(const char *type);
         void announce();
 
     private:
-        Zombie(){};
-        const char *_name;
-        const char *_type;
+        char *_name;
+        char *_type;
 };

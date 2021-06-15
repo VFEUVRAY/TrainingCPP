@@ -12,8 +12,6 @@
 # include <random>
 #endif
 
-char *my_strcpy(const char *str);
-
 class ZombieEvent
 {
     public:

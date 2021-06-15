@@ -12,26 +12,6 @@
 
 #include <random>
 
-int my_strlen(const char *str)
-{
-    int i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
-char *my_strcpy(const char *str)
-{
-    char *res = new char[my_strlen(str) + 1];
-    int i = 0;
-    while (str[i]) {
-        res[i] = str[i];
-        i++;
-    }
-    res[i] = 0;
-    return (res);
-}
-
 const char *ZombieEvent::_namePool[] = {"Vaillant", "Thierry", "Alexis",
                                         "Wabieh", "Julie", "Christophe",
                                         "IDIW", "Brice", "Anthony",
